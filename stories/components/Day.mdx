@@ -1,0 +1,47 @@
+import { Canvas, Meta, Source } from '@storybook/blocks';
+import * as DayStories from './Day.stories';
+
+<Meta of={DayStories} />
+
+# Day
+
+Use `<Day>` to render the markup for each event of the day. You probably won't need to use this component directly, as it is being used
+internally by `<Days>`.
+
+<Canvas of={DayStories.BasicDay} />
+
+<Source
+  code={`
+<Day date={new Date()}>
+  {({ containerRef, events }) => (
+    <div
+      ref={containerRef}
+      className="relative h-80"
+    >
+      day container
+      {events.map(({ event, top, bottom }) => (
+        <div
+          key={event.title}
+          className="absolute inset-x-3 p-4 rounded-lg bg-lime-500 text-white"
+          style={{ top, bottom }}
+        >
+          {event.title}
+          <br />
+          <small>
+            {format(event.start, 'HH:mm')}
+            &nbsp;-&nbsp;
+            {format(event.end, 'HH:mm')}
+          </small>
+        </div>
+      ))}
+    </div>
+  )}
+</Day>
+  `}
+  language="tsx"
+/>
+
+The only style required for the container is "position: relative".
+As you can see you are provided with `top` and `bottom`. Use them like the example, to position your event.
+
+Note you also have access to `event` which is the original event object you passed to `<Agenda>`.

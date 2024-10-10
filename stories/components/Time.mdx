@@ -1,0 +1,62 @@
+import { Canvas, Meta, Source } from '@storybook/blocks';
+import * as TimeStories from './Time.stories';
+
+<Meta of={TimeStories} />
+
+# Ticks
+
+### Using `<Time>` to render a markup for each hour.
+
+<Canvas of={TimeStories.Hours} />
+
+Every tick has the current `hour`, and the `top` position in pixels. `top` is calculated based on the height of the container.
+
+<Source
+	code={`
+<Time>
+  {({ containerRef, time }) => (
+    <div
+      className="relative h-[700px]"
+      ref={containerRef}
+    >
+      {time.map(({ hour, top }) => (
+        <div
+          key={hour}
+          className="text-slate-300 absolute"
+          style={{ top: top - 14 }}
+        >
+          {hour} hs
+        </div>
+      ))}
+    </div>
+  )}
+</Time>
+  `}
+	language="tsx"
+/>
+
+### Using `<Time>` to render a line for each hour
+
+<Canvas of={TimeStories.HorizontalLines} />
+
+<Source
+	code={`
+<Time>
+  {({ containerRef, time }) => (
+    <div
+      className="relative h-[700px]"
+      ref={containerRef}
+    >
+      {time.map(({ hour, top }) => (
+        <div
+          key={hour}
+          className="h-0.5 bg-slate-100 absolute w-full"
+          style={{ top }}
+        />
+      ))}
+    </div>
+  )}
+</Time>
+  `}
+	language="tsx"
+/>

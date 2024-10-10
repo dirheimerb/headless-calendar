@@ -1,0 +1,92 @@
+{
+  "name": "react-headless-calendar",
+  "version": "0.0.0",
+  "description": "Headless calendar for React",
+  "keywords": [
+    "headless",
+    "calendar",
+    "unstyled",
+    "events"
+  ],
+  "homepage": "https://github.com/dirheimerb/react-headless-calendar#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bdirheimer/react-headless-calendar"
+  },
+  "license": "MIT",
+  "author": "Bradley Dirheimer",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/src/index.d.js",
+        "default": "./dist/src/index.js"
+      }
+    }
+  },
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.js",
+  "files": [
+    "/dist/src"
+  ],
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "build-storybook": "storybook build",
+    "format": "prettier --write .",
+    "prepublishOnly": "npm run build",
+    "storybook": "storybook dev -p 6006",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSameLine": true,
+    "bracketSpacing": true,
+    "endOfLine": "auto",
+    "plugins": [
+      "prettier-plugin-packagejson",
+      "prettier-plugin-sort-imports",
+      "prettier-plugin-tailwindcss"
+    ],
+    "printWidth": 80,
+    "semi": true,
+    "singleAttributePerLine": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "useTabs": true
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.3.5",
+    "@storybook/addon-interactions": "^8.3.5",
+    "@storybook/addon-links": "^8.3.5",
+    "@storybook/addon-storysource": "^8.3.5",
+    "@storybook/blocks": "^8.3.5",
+    "@storybook/react": "^8.3.5",
+    "@storybook/react-vite": "^8.3.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "autoprefixer": "^10.4.20",
+    "date-fns": "^4.1.0",
+    "eslint": "^9.12.0",
+    "eslint-plugin-react": "^7.37.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "framer-motion": "^11.11.7",
+    "phosphor-react": "^1.4.1",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "prettier-plugin-packagejson": "^2.5.3",
+    "prettier-plugin-sort-imports": "^1.8.6",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "storybook": "^8.3.5",
+    "tailwindcss": "^3.4.13"
+  },
+  "packageManager": "pnpm@9.12.1+sha256.91452fdfa46234ae447d46d5c4fc4e7e0a7058f90495c4b6f77f8beebbb154e3",
+  "dependencies": {
+    "@radix-ui/react-context-menu": "^2.2.2",
+    "@storybook/addon-styling-webpack": "^1.0.0",
+    "@storybook/addon-themes": "^8.3.5"
+  }
+}
