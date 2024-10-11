@@ -1,8 +1,7 @@
-import Agenda, { Days, Time, dateToPixels } from '../../src';
+import Agenda, { Days, Time, dateToPixels, RedLine } from '../../src';
 import { format, startOfWeek, subHours } from 'date-fns';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { BaseAgendaEvent } from '../../src/types';
-import { RedLine } from '../../src';
 import { useCallback } from 'react';
 
 const meta: Meta<typeof Agenda> = {
@@ -95,16 +94,16 @@ export const Scroll: Story = {
 							style={{ gridTemplateColumns: '60px repeat(7, 1fr)' }}
 							ref={scrollAreaRef}>
 							<Time>
-								{({ containerRef, Time }) => (
+								{({ containerRef, time }) => (
 									<div
 										className="relative col-start-1 row-start-1 h-screen"
 										ref={containerRef}>
-										{Time.map(({ hour, top }) => (
+										{time.map(({ hour, top, label }) => (
 											<div
 												key={hour}
 												className="absolute right-2 text-slate-300"
 												style={{ top: top - 14 }}>
-												{hour} hs
+												{label}
 											</div>
 										))}
 									</div>

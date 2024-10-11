@@ -1,7 +1,6 @@
-import Agenda, { Days, Time, useResize } from '../../src';
+import Agenda, { Days, Time, useResize, useDragEvent } from '../../src';
 import type { Meta, StoryObj } from '@storybook/react';
 import { BaseAgendaEvent } from '../../src/types';
-import { useDragEvent } from '../../src/utils';
 import { format, startOfWeek } from 'date-fns';
 import { useCallback, useState } from 'react';
 

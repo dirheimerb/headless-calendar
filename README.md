@@ -1,10 +1,10 @@
 <img
   src="./assets/logo.svg"
-  alt="Headless agenda for react"
+  alt="Headless calendar for react"
   width="100"
 />
 
-# Headless agenda for react
+# Headless calendar for react
 
 A zero dependency library for react, with unstyled and controlled components to build your own agenda. Simple to use while allowing fully customization (markup is all yours!)
 
@@ -20,7 +20,7 @@ A zero dependency library for react, with unstyled and controlled components to 
 
 <br>
 
-## [📖 All examples and documentation here!](https://react-headless-agenda.vercel.app/)
+## [📖 All examples and documentation here!](https://react-headless-calendar.vercel.app/)
 
 <br>
 
@@ -46,7 +46,15 @@ You can easily adapt it for mobile!
 # Installation
 
 ```bash
-npm i react-headless-agenda
+npm i react-headless-calendar
+```
+
+```bash
+yarn add react-headless-calendar
+```
+
+```bash
+pnpm add react-headless-calendar
 ```
 
 <br>
@@ -93,13 +101,13 @@ It lets you render whatever you need to, for each day. For example, let's render
 import { format } from 'date-fns';
 
 <div className="flex">
-	<Days>
-		{({ date }) => (
-			<div key={date.toString()} className="flex-1">
-				{format(date, 'ccc d')}
-			</div>
-		)}
-	</Days>
+ <Days>
+  {({ date }) => (
+   <div key={date.toString()} className="flex-1">
+    {format(date, 'ccc d')}
+   </div>
+  )}
+ </Days>
 </div>;
 ```
 
@@ -112,15 +120,15 @@ Now the fun part, render your events!
 ```tsx
 // `events` is an array containing only the events for the current day
 <Days>
-	{({ date, containerRef, events }) => (
-		<div key={date.toString()} ref={containerRef} className="relative h-full">
-			{events.map(({ event, top, bottom }) => (
-				<div className="absolute w-full rounded-lg p-4" style={{ top, bottom }}>
-					{event.someTitle}
-				</div>
-			))}
-		</div>
-	)}
+ {({ date, containerRef, events }) => (
+  <div key={date.toString()} ref={containerRef} className="relative h-full">
+   {events.map(({ event, top, bottom }) => (
+    <div className="absolute w-full rounded-lg p-4" style={{ top, bottom }}>
+     {event.someTitle}
+    </div>
+   ))}
+  </div>
+ )}
 </Days>
 ```
 

@@ -1,8 +1,7 @@
 import { addDays, format, startOfWeek } from 'date-fns';
 import type { Meta, StoryObj } from '@storybook/react';
-import { BaseAgendaEvent } from '../../src/types';
-import Agenda, { Days, Time } from '../../src';
-import { RedLine } from '../../src';
+import type { BaseAgendaEvent } from '../../src';
+import Agenda, { Days, Time, RedLine } from '../../src';
 import { useState } from 'react';
 
 const meta: Meta<typeof Agenda> = {
@@ -86,16 +85,16 @@ export const Basic: Story = {
 								)}
 							</Days>
 							<Time>
-								{({ containerRef, Time }) => (
+								{({ containerRef, time }) => (
 									<div
 										className="relative col-start-1 row-start-2"
 										ref={containerRef}>
-										{Time.map(({ hour, top }) => (
+										{time.map(({ hour, top, label }) => (
 											<div
 												key={hour}
-												className="absolute right-2 text-slate-300"
+												className="absolute right-0 text-xs text-slate-300"
 												style={{ top: top - 14 }}>
-												{hour} hs
+												{label}
 											</div>
 										))}
 									</div>

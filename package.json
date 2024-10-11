@@ -31,6 +31,7 @@
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "build-storybook": "storybook build",
+    "docs": "typedoc",
     "format": "prettier --write .",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
@@ -81,7 +82,10 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "storybook": "^8.3.5",
-    "tailwindcss": "^3.4.13"
+    "tailwindcss": "^3.4.13",
+    "typedoc": "^0.26.8",
+    "typedoc-plugin-github-widget": "^1.0.0",
+    "typedoc-plugin-md": "^0.3.0"
   },
   "packageManager": "pnpm@9.12.1+sha256.91452fdfa46234ae447d46d5c4fc4e7e0a7058f90495c4b6f77f8beebbb154e3",
   "dependencies": {

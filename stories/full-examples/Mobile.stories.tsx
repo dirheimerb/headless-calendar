@@ -81,16 +81,16 @@ export const Mobile: Story = {
 								</h4>
 								<div ref={containerRef} className="flex gap-x-3">
 									<Time>
-										{({ containerRef, Time }) => (
+										{({ containerRef, time }) => (
 											<div
 												className="relative col-start-1 row-start-2 h-[500px] w-12"
 												ref={containerRef}>
-												{Time.map(({ hour, top }) => (
+												{time.map(({ hour, top, label }) => (
 													<div
 														key={hour}
-														className="absolute right-2 text-xs text-slate-300"
+														className="absolute right-0 text-xs text-slate-300"
 														style={{ top }}>
-														{hour} hs
+														{label}
 													</div>
 												))}
 											</div>

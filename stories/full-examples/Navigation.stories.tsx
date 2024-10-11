@@ -1,8 +1,7 @@
 import type { AgendaChildrenProps, BaseAgendaEvent } from '../../src/types';
 import { addDays, format, setHours, startOfWeek, subDays } from 'date-fns';
 import type { Meta, StoryObj } from '@storybook/react';
-import Agenda, { Days, Time } from '../../src';
-import { RedLine } from '../../src';
+import Agenda, { Days, Time, RedLine } from '../../src';
 import { useState } from 'react';
 
 const meta: Meta<typeof Agenda> = {
@@ -160,16 +159,16 @@ export const Navigation: Story = {
 								height: 'calc(100vh - 200px)',
 							}}>
 							<Time>
-								{({ containerRef, Time }) => (
+								{({ containerRef, time }) => (
 									<div
 										className="relative col-start-1 row-start-1 h-screen"
 										ref={containerRef}>
-										{Time.map(({ hour, top }) => (
+										{time.map(({ hour, top, label }) => (
 											<div
 												key={hour}
 												className="absolute right-2 text-slate-300"
 												style={{ top: top - 14 }}>
-												{hour} hs
+												{label}
 											</div>
 										))}
 									</div>

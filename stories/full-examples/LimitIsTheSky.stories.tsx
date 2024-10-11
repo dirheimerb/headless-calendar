@@ -17,13 +17,11 @@ import {
 	startOfWeek,
 	subDays,
 } from 'date-fns';
-import Agenda, { Crosshair, Days, RedLine, Time, useResize } from '../../src';
-import type { AgendaChildrenProps, BaseAgendaEvent } from '../../src/types';
+import Agenda, { Crosshair, Days, RedLine, Time, useResize, mouseEventToDate, useDragEvent } from '../../src';
+import type { AgendaChildrenProps, BaseAgendaEvent, ExtendedEventProps } from '../../src';
 import { MouseEvent, useCallback, useRef, useState } from 'react';
-import { mouseEventToDate, useDragEvent } from '../../src/utils';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ExtendedEventProps } from '../../src/types';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 type Mode = 'view' | 'move' | 'paint';
 
@@ -356,7 +354,7 @@ export const LimitIsTheSky: Story = {
 							<div />
 							<Days>
 								{({ date, events }) => (
-									<motion.div
+									<m.div
 										key={date.toString()}
 										className="text-center"
 										layout
@@ -370,7 +368,7 @@ export const LimitIsTheSky: Story = {
 													: '1 event'}
 											</small>
 										)}
-									</motion.div>
+									</m.div>
 								)}
 							</Days>
 						</div>
@@ -380,18 +378,18 @@ export const LimitIsTheSky: Story = {
 								gridTemplateColumns: `60px repeat(${days}, 1fr)`,
 							}}>
 							<Time>
-								{({ containerRef, Time }) => (
+								{({ containerRef, time }) => (
 									<div
 										className="relative col-start-1 row-start-1 h-full"
 										ref={containerRef}>
-										{Time.map(({ hour, top }) => {
+										{time.map(({ hour, top, label }) => {
 											if (hour % 2 === 0) return null;
 											return (
 												<div
 													key={hour}
 													className="absolute right-2 text-slate-400"
 													style={{ top: top - 14 }}>
-													{format(new Date().setHours(hour, 0, 0, 0), 'HH:mm')}
+													{label}
 												</div>
 											);
 										})}
@@ -399,14 +397,14 @@ export const LimitIsTheSky: Story = {
 								)}
 							</Time>
 							<Time>
-								{({ containerRef, Time }) => (
+								{({ containerRef, time }) => (
 									<div
 										className={`relative col-start-2 row-start-1 h-full transition-all ${dragging ? 'bg-slate-200' : ''} `}
 										ref={containerRef}
 										style={{
 											gridColumnEnd: `span ${days}`,
 										}}>
-										{Time.map(({ hour, top }) => {
+										{time.map(({ hour, top }) => {
 											if (hour === 0) return null;
 											return (
 												<div
@@ -421,7 +419,7 @@ export const LimitIsTheSky: Story = {
 							</Time>
 							<Days>
 								{({ containerRef, events, date, index }) => (
-									<motion.div
+									<m.div
 										key={date.toString()}
 										ref={containerRef}
 										layout
@@ -482,7 +480,7 @@ export const LimitIsTheSky: Story = {
 												)}
 											</Crosshair>
 										)}
-									</motion.div>
+									</m.div>
 								)}
 							</Days>
 						</div>
