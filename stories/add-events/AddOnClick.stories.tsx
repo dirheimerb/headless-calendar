@@ -1,4 +1,5 @@
 import Agenda, { Days, Time, mouseEventToDate } from '../../src';
+import { expect, userEvent, within } from '@storybook/test';
 import type { Meta, StoryObj } from '@storybook/react';
 import { addHours, startOfWeek } from 'date-fns';
 import { MouseEvent, useState } from 'react';
@@ -76,7 +77,7 @@ export const AddOnClick: Story = {
 									{time.map(({ hour, top }) => (
 										<div
 											key={hour}
-											className="absolute left-0 right-0 h-0.5 bg-slate-300 opacity-30"
+											className="absolute right-0 left-0 h-0.5 bg-slate-300 opacity-30"
 											style={{ top }}
 										/>
 									))}

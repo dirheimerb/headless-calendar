@@ -1,7 +1,7 @@
 import type { AgendaChildrenProps, BaseAgendaEvent } from '../../src/types';
 import { addDays, format, setHours, startOfWeek, subDays } from 'date-fns';
-import type { Meta, StoryObj } from '@storybook/react';
 import Agenda, { Days, Time, RedLine } from '../../src';
+import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
 const meta: Meta<typeof Agenda> = {

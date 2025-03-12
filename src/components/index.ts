@@ -4,3 +4,4 @@ export * from './Days';
 export * from './Day';
 export * from './RedLine';
 export * from './Time';
+export * from './TimeGrid';

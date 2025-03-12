@@ -5,6 +5,11 @@ import { format, startOfWeek } from 'date-fns';
 const meta: Meta<typeof Agenda> = {
 	title: 'Components/Crosshair',
 	component: Agenda,
+	args: {
+		startDate: startOfWeek(new Date()),
+		events: [],
+		days: 5,
+	},
 };
 
 export default meta;
@@ -17,7 +22,7 @@ export const WithTime: Story = {
 				{() => (
 					<>
 						<div
-							className="grid h-[700px] select-none gap-4"
+							className="grid h-[700px] gap-4 select-none"
 							style={{
 								gridTemplateColumns: '60px repeat(5, 1fr)',
 								gridTemplateRows: 'min-content 1fr',
@@ -83,7 +88,7 @@ export const WithTime: Story = {
 										{time.map(({ hour, top }) => (
 											<div
 												key={hour}
-												className="absolute -left-4 right-0 h-0.5 bg-slate-300 opacity-10"
+												className="absolute right-0 -left-4 h-0.5 bg-slate-300 opacity-10"
 												style={{ top }}
 											/>
 										))}
@@ -105,7 +110,7 @@ export const Dashed: Story = {
 				{() => (
 					<>
 						<div
-							className="grid h-[700px] select-none gap-4"
+							className="grid h-[700px] gap-4 select-none"
 							style={{
 								gridTemplateColumns: '60px repeat(5, 1fr)',
 								gridTemplateRows: 'min-content 1fr',
@@ -175,7 +180,7 @@ export const RoundedMinutes: Story = {
 				{() => (
 					<>
 						<div
-							className="grid h-[700px] select-none gap-4"
+							className="grid h-[700px] gap-4 select-none"
 							style={{
 								gridTemplateColumns: '60px repeat(5, 1fr)',
 								gridTemplateRows: 'min-content 1fr',
@@ -241,7 +246,7 @@ export const RoundedMinutes: Story = {
 										{time.map(({ hour, top }) => (
 											<div
 												key={hour}
-												className="absolute -left-4 right-0 h-0.5 bg-slate-300 opacity-10"
+												className="absolute right-0 -left-4 h-0.5 bg-slate-300 opacity-10"
 												style={{ top }}
 											/>
 										))}

@@ -1,7 +1,12 @@
 'use client';
-import { useCallback, useContext, useEffect, useState } from 'react';
+import {
+	roundToNearestMinutes,
+	dateToPixels,
+	pixelsToDate,
+	DayContext,
+} from '..';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import type { CrosshairChildrenProps, CrosshairProps } from '..';
-import { roundToNearestMinutes, dateToPixels, pixelsToDate, DayContext } from '..';
 /**
  * Crosshair
  * @param {CrosshairProps} { children, roundMinutes = 1 }
@@ -21,7 +26,7 @@ import { roundToNearestMinutes, dateToPixels, pixelsToDate, DayContext } from '.
 export default function Crosshair({
 	children,
 	roundMinutes = 1,
-}: CrosshairProps): JSX.Element | null {
+}: CrosshairProps) {
 	const { date: dayDate, columnContainerRef } = useContext(DayContext);
 	const [childrenProps, setChildrenProps] =
 		useState<CrosshairChildrenProps | null>(null);

@@ -101,13 +101,13 @@ It lets you render whatever you need to, for each day. For example, let's render
 import { format } from 'date-fns';
 
 <div className="flex">
- <Days>
-  {({ date }) => (
-   <div key={date.toString()} className="flex-1">
-    {format(date, 'ccc d')}
-   </div>
-  )}
- </Days>
+	<Days>
+		{({ date }) => (
+			<div key={date.toString()} className="flex-1">
+				{format(date, 'ccc d')}
+			</div>
+		)}
+	</Days>
 </div>;
 ```
 
@@ -120,15 +120,15 @@ Now the fun part, render your events!
 ```tsx
 // `events` is an array containing only the events for the current day
 <Days>
- {({ date, containerRef, events }) => (
-  <div key={date.toString()} ref={containerRef} className="relative h-full">
-   {events.map(({ event, top, bottom }) => (
-    <div className="absolute w-full rounded-lg p-4" style={{ top, bottom }}>
-     {event.someTitle}
-    </div>
-   ))}
-  </div>
- )}
+	{({ date, containerRef, events }) => (
+		<div key={date.toString()} ref={containerRef} className="relative h-full">
+			{events.map(({ event, top, bottom }) => (
+				<div className="absolute w-full rounded-lg p-4" style={{ top, bottom }}>
+					{event.someTitle}
+				</div>
+			))}
+		</div>
+	)}
 </Days>
 ```
 

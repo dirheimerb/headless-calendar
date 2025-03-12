@@ -7,7 +7,7 @@ import { DragOnly } from './Drag.stories';
 
 With these simple steps, you'll allow your events to be draggable.
 
-The library is not updating your state, is not making any copy of the events, and is not manipulating the dom. All it does is calculate, and let you know, what is 
+The library is not updating your state, is not making any copy of the events, and is not manipulating the dom. All it does is calculate, and let you know, what is
 the new start and end time for your event, based on the dragging. Then you can simply update your state accordingly.
 
 <Canvas of={DragOnly} />
@@ -20,32 +20,31 @@ const Event = (
   { id, title, top, bottom, className, start, end }: MyEventProps & { top: number, bottom: number }
 ) => {
 
-  const { handleDragStart } = useDragEvent(id)
+const { handleDragStart } = useDragEvent(id)
 
-  return (
-    <div
-      id={id}
-      key={id}
-      tabIndex={-1}
-      className={\`
-        absolute w-full p-4 rounded-lg cursor-move select-none \${className}
-      \`}
-      style={{ top, bottom }}
-      draggable
-      onDragStart={handleDragStart}
-    >
-      {title}
-      <br />
-      <small>
-        {format(start, 'EEEEEE HH:mm')}
-        &nbsp;-&nbsp;
-        {format(end, 'EEEEEE HH:mm')}
-      </small>
-    </div>
-  )
+return (
+<div
+id={id}
+key={id}
+tabIndex={-1}
+className={\`
+absolute w-full p-4 rounded-lg cursor-move select-none \${className}
+\`}
+style={{ top, bottom }}
+draggable
+onDragStart={handleDragStart} >
+{title}
+<br />
+<small>
+{format(start, 'EEEEEE HH:mm')}
+&nbsp;-&nbsp;
+{format(end, 'EEEEEE HH:mm')}
+</small>
+</div>
+)
 }
-  `}
-  language="tsx"
+`}
+language="tsx"
 />
 
 Now, the library is firing `onEventChange` multiple times as you move an event. Use a handler to update the state:
@@ -55,10 +54,11 @@ Now, the library is firing `onEventChange` multiple times as you move an event. 
 const [events, setEvents] = useState(initialEvents)
 
 const handleEventChange = useCallback((event: MyEventProps) => {
-  setEvents(curr => curr.map(e => e.id === event.id ? event : e))
+setEvents(curr => curr.map(e => e.id === event.id ? event : e))
 }, [])
 
 return (
+
   <Agenda
     startDate={startDate}
     onStartDateChange={setStartDate}

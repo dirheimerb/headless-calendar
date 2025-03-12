@@ -76,7 +76,7 @@ export const Mobile: Story = {
 					<Days>
 						{({ date, containerRef, events }) => (
 							<div key={date.toString()}>
-								<h4 className="mb-2 mt-4" id={format(date, 'EEEE d')}>
+								<h4 className="mt-4 mb-2" id={format(date, 'EEEE d')}>
 									{format(date, 'EEEE d')}
 								</h4>
 								<div ref={containerRef} className="flex gap-x-3">

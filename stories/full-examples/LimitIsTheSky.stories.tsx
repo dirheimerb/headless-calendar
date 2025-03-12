@@ -17,8 +17,20 @@ import {
 	startOfWeek,
 	subDays,
 } from 'date-fns';
-import Agenda, { Crosshair, Days, RedLine, Time, useResize, mouseEventToDate, useDragEvent } from '../../src';
-import type { AgendaChildrenProps, BaseAgendaEvent, ExtendedEventProps } from '../../src';
+import Agenda, {
+	Crosshair,
+	Days,
+	RedLine,
+	Time,
+	useResize,
+	mouseEventToDate,
+	useDragEvent,
+} from '../../src';
+import type {
+	AgendaChildrenProps,
+	BaseAgendaEvent,
+	ExtendedEventProps,
+} from '../../src';
 import { MouseEvent, useCallback, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { m } from 'framer-motion';
@@ -93,7 +105,7 @@ const Event = ({
 					{!startsBeforeToday && (
 						<X
 							size={22}
-							className="absolute -right-2.5 -top-2.5 cursor-pointer rounded-full bg-slate-200 p-0.5 text-slate-500"
+							className="absolute -top-2.5 -right-2.5 cursor-pointer rounded-full bg-slate-200 p-0.5 text-slate-500"
 							onClick={onDelete}
 							weight="bold"
 						/>
@@ -334,7 +346,7 @@ export const LimitIsTheSky: Story = {
 				onDrop={() => setDragging(false)}>
 				{({ prev, next, endDate }) => (
 					<>
-						<div className="mx-auto mb-6 flex w-full select-none items-center justify-between xl:w-10/12">
+						<div className="mx-auto mb-6 flex w-full items-center justify-between select-none xl:w-10/12">
 							<NavigationBar
 								days={days}
 								prev={prev}
@@ -347,7 +359,7 @@ export const LimitIsTheSky: Story = {
 							<ModeButtons mode={mode} setMode={setMode} />
 						</div>
 						<div
-							className="grid select-none gap-4 border-b pb-2"
+							className="grid gap-4 border-b pb-2 select-none"
 							style={{
 								gridTemplateColumns: `60px repeat(${days}, 1fr)`,
 							}}>
@@ -373,7 +385,7 @@ export const LimitIsTheSky: Story = {
 							</Days>
 						</div>
 						<div
-							className="grid h-[550px] select-none gap-4 overflow-hidden bg-slate-100"
+							className="grid h-[550px] gap-4 overflow-hidden bg-slate-100 select-none"
 							style={{
 								gridTemplateColumns: `60px repeat(${days}, 1fr)`,
 							}}>

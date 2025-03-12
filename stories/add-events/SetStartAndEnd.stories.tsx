@@ -191,7 +191,7 @@ export const SetStartAndEnd: Story = {
 										{time.map(({ hour, top }) => (
 											<div
 												key={hour}
-												className="absolute -left-4 right-0 h-0.5 bg-slate-300 opacity-20"
+												className="absolute right-0 -left-4 h-0.5 bg-slate-300 opacity-20"
 												style={{ top }}
 											/>
 										))}

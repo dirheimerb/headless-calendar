@@ -5,6 +5,7 @@ import {
 	startOfWeek,
 } from 'date-fns';
 import Agenda, { Days, Time, mouseEventToDate } from '../../src';
+import { within, userEvent, expect } from '@storybook/test';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MouseEvent, useRef, useState } from 'react';
 import { BaseAgendaEvent } from '../../src/types';
@@ -51,6 +52,14 @@ const Event = ({
 };
 
 export const DrawEvents: Story = {
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const day = await canvas.findByText('Mon 7');
+		const time = await canvas.findByText('5:00 AM');
+
+		await userEvent.click(day);
+		await userEvent.click(time);
+	},
 	render: () => {
 		const mouseDown = useRef(false);
 		const [events, setEvents] = useState<MyEventProps[]>([]);
@@ -94,7 +103,7 @@ export const DrawEvents: Story = {
 				{() => (
 					<>
 						<div
-							className="grid h-[700px] select-none gap-4"
+							className="grid h-[700px] gap-4 select-none"
 							style={{
 								gridTemplateColumns: '60px repeat(5, 1fr)',
 								gridTemplateRows: 'min-content 1fr',
@@ -112,12 +121,12 @@ export const DrawEvents: Story = {
 									<div
 										className="relative col-start-1 row-start-2"
 										ref={containerRef}>
-										{time.map(({ hour, top }) => (
+										{time.map(({ hour, top, label }) => (
 											<div
 												key={hour}
-												className="absolute right-2 text-slate-300"
+												className="absolute right-0 text-xs text-slate-500"
 												style={{ top: top - 14 }}>
-												{hour} hs
+												{label}
 											</div>
 										))}
 									</div>
@@ -174,7 +183,7 @@ export const DrawEvents: Story = {
 										{time.map(({ hour, top }) => (
 											<div
 												key={hour}
-												className="absolute -left-4 right-0 h-0.5 bg-slate-300 opacity-20"
+												className="absolute right-0 -left-4 h-0.5 bg-slate-300 opacity-20"
 												style={{ top }}
 											/>
 										))}

@@ -1,5 +1,14 @@
 'use client';
 import {
+	useDragAndDrop,
+	useAgenda,
+	dateToPixels,
+	differenceInMinutes,
+	isSameDay,
+	isWithinInterval,
+	startOfDay,
+} from '..';
+import React, {
 	createContext,
 	memo,
 	useCallback,
@@ -9,15 +18,6 @@ import {
 	useState,
 } from 'react';
 import type { DayContextProps, DayProps } from '..';
-import { 
-	useDragAndDrop, 
-	useAgenda, 
-	dateToPixels,	
-	differenceInMinutes,
-	isSameDay,
-	isWithinInterval,
-	startOfDay 
-} from '..';
 import { format } from 'date-fns';
 
 export const DayContext = createContext<DayContextProps>({
@@ -44,7 +44,7 @@ export const DayContext = createContext<DayContextProps>({
  * </Day>
  * ```
  */
-function Day({ date, children }: DayProps): JSX.Element {
+function Day({ date, children }: DayProps): React.ReactElement {
 	const {
 		events: allEvents,
 		onDrop,
@@ -57,16 +57,18 @@ function Day({ date, children }: DayProps): JSX.Element {
 	const [columnHeight, setColumnHeight] = useState(0);
 	const topRef = useRef<number>(0);
 
-	const { handleDragOver, handleDrop, onDragEnd, onDragStart } = useDragAndDrop({
-		allEvents,
-		date,
-		columnHeight,
-		columnContainerRef,
-		topRef,
-		onEventChange,
-		onDrop,
-		setDraggingId
-});
+	const { handleDragOver, handleDrop, onDragEnd, onDragStart } = useDragAndDrop(
+		{
+			allEvents,
+			date,
+			columnHeight,
+			columnContainerRef,
+			topRef,
+			onEventChange,
+			onDrop,
+			setDraggingId,
+		},
+	);
 
 	const containerRef = useCallback((node: HTMLDivElement) => {
 		if (node) {
@@ -81,7 +83,6 @@ function Day({ date, children }: DayProps): JSX.Element {
 	useEffect(() => {
 		const node = columnContainerRef.current;
 		if (!node) return;
-		
 
 		node.addEventListener('dragover', handleDragOver);
 		node.addEventListener('drop', handleDrop);

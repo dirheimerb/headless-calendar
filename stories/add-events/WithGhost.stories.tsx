@@ -139,12 +139,12 @@ export const WithGhost: Story = {
 									<div
 										className="relative col-start-1 row-start-2"
 										ref={containerRef}>
-										{time.map(({ hour, top }) => (
+										{time.map(({ hour, top, label }) => (
 											<div
 												key={hour}
-												className="absolute right-2 text-slate-300"
+												className="absolute right-0 text-xs text-slate-300"
 												style={{ top: top - 14 }}>
-												{hour} hs
+												{label}
 											</div>
 										))}
 									</div>
@@ -190,7 +190,7 @@ export const WithGhost: Story = {
 										{time.map(({ hour, top }) => (
 											<div
 												key={hour}
-												className="absolute -left-4 right-0 h-0.5 bg-slate-300 opacity-20"
+												className="absolute right-0 -left-4 h-0.5 bg-slate-300 opacity-20"
 												style={{ top }}
 											/>
 										))}

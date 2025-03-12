@@ -7,7 +7,7 @@ import {
 /**
  * dateToPixels
  * @param {Date} date
- * @param {number} columnHeight 
+ * @param {number} columnHeight
  * @returns {number}
  * @description Converts a date to pixels based on the position of the date relative to the column height.
  * @example
@@ -15,7 +15,7 @@ import {
  * const date = new Date();
  * const pixels = dateToPixels(date, 1000);
  * console.log(pixels); // number
- * ``` 
+ * ```
  */
 export const dateToPixels = (date: Date, columnHeight: number): number => {
 	const differenceWithEnd = differenceInSeconds(endOfDay(date), date);
@@ -25,9 +25,9 @@ export const dateToPixels = (date: Date, columnHeight: number): number => {
 };
 /**
  * pixelsToDate
- * @param {number} pixels 
- * @param {number} columnHeight 
- * @param {Date} pivot 
+ * @param {number} pixels
+ * @param {number} columnHeight
+ * @param {Date} pivot
  * @returns {Date}
  * @description Converts pixels to a date based on the position of the pixels relative to the column height.
  * @example
@@ -59,7 +59,7 @@ export const pixelsToDate = (
  * const date = mouseEventToDate(e);
  * console.log(date);
  * }} />
- * ``` 
+ * ```
  */
 export const mouseEventToDate = (
 	e: React.MouseEvent<HTMLElement>,
@@ -83,4 +83,29 @@ export const hideDragGhost = (e: React.DragEvent<HTMLElement>) => {
 	blankCanvas.style.position = 'fixed';
 	document.body.appendChild(blankCanvas);
 	e.dataTransfer.setDragImage(blankCanvas, 0, 0);
+};
+/**
+ * getDataAttributes
+ * @param {Record<string, string>} attributes - Data attributes
+ * @returns {Record<string, string>}
+ * @description Converts an object of data attributes to an object of HTML data attributes.
+ * @example
+ * ```tsx
+ * const attributes = { id: '1', name: 'example' };
+ * const dataAttributes = getDataAttributes(attributes);
+ * console.log(dataAttributes); // { 'data-id': '1', 'data-name': 'example' }
+ * ```
+ */
+export const getDataAttributes = (
+	attributes?: Record<string, string>,
+): Record<string, string> => {
+	return attributes
+		? Object.entries(attributes).reduce(
+				(acc, [key, value]) => {
+					acc[`data-${key}`] = value;
+					return acc;
+				},
+				{} as Record<string, string>,
+			)
+		: {};
 };

@@ -1,9 +1,9 @@
-import { Canvas, Meta, Source } from '@storybook/blocks';
 import { PixelsToDateUsage } from './PixelsToDateUsage.stories';
-import { AddOnClick } from './AddOnClick.stories';
-import { WithGhost } from './WithGhost.stories';
 import { SetStartAndEnd } from './SetStartAndEnd.stories';
+import { Canvas, Meta, Source } from '@storybook/blocks';
+import { AddOnClick } from './AddOnClick.stories';
 import { DrawEvents } from './DrawEvents.stories';
+import { WithGhost } from './WithGhost.stories';
 
 <Meta title="Interaction/add-events/Add Events" />
 
@@ -11,8 +11,8 @@ import { DrawEvents } from './DrawEvents.stories';
 
 The library provides a `mouseEventToDate` function to get the date from a mouse event. You'll use this function to update your state and add events based on the cursor position.
 
-
 ### Click anywhere:
+
 <Canvas of={PixelsToDateUsage} />
 
 <Source
@@ -20,10 +20,11 @@ The library provides a `mouseEventToDate` function to get the date from a mouse 
 const [events, setEvents] = useState<MyEvent[]>([])
 
 const handleClick = (e: MouseEvent<HTMLElement>, date: Date) => {
-  alert(\`clicked at: \${mouseEventToDate(e, date).toLocaleTimeString()}\`)
+alert(\`clicked at: \${mouseEventToDate(e, date).toLocaleTimeString()}\`)
 }
 
 return (
+
   <Agenda startDate={new Date()} events={[]} days={1} >
     {() => (
       <div className="grid h-[700px] grid-cols-1" >
@@ -53,36 +54,42 @@ Simply add your event with the date you got from the mouse event:
 const [events, setEvents] = useState<MyEvent[]>([])
 
 const handleClick = (e: MouseEvent<HTMLElement>, date: Date) => {
-  const clickedDate = mouseEventToDate(e, date)
-  setEvents(prev => [
-    ...prev,
-    {
-      id: (prev.length + 1).toString(),
-      title: \`New Event \${(prev.length + 1).toString()}\`,
-      start: clickedDate,
-      end: addHours(clickedDate, 3),
-      className: 'bg-blue-500 text-white',
-    }
-  ])
+const clickedDate = mouseEventToDate(e, date)
+setEvents(prev => [
+...prev,
+{
+id: (prev.length + 1).toString(),
+title: \`New Event \${(prev.length + 1).toString()}\`,
+start: clickedDate,
+end: addHours(clickedDate, 3),
+className: 'bg-blue-500 text-white',
 }
-  `}
-  language="tsx"
+])
+}
+`}
+language="tsx"
 />
 
 ### More examples
 
 #### Displaying a ghost event while hovering (click to add event):
+
 <Canvas of={WithGhost} />
-[See code](https://github.com/lucassaid/react-headless-agenda/blob/main/stories/add-events/WithGhost.stories.tsx)
+[See
+code](https://github.com/lucassaid/react-headless-agenda/blob/main/stories/add-events/WithGhost.stories.tsx)
 
 ---
 
 #### Click once to set start, click again to set end:
+
 <Canvas of={SetStartAndEnd} />
-[See code](https://github.com/lucassaid/react-headless-agenda/blob/main/stories/add-events/SetStartAndEnd.stories.tsx)
+[See
+code](https://github.com/lucassaid/react-headless-agenda/blob/main/stories/add-events/SetStartAndEnd.stories.tsx)
 
 ---
 
 #### Hold click and move to "draw" the events:
+
 <Canvas of={DrawEvents} />
-[See code](https://github.com/lucassaid/react-headless-agenda/blob/main/stories/add-events/DrawEvents.stories.tsx)
+[See
+code](https://github.com/lucassaid/react-headless-agenda/blob/main/stories/add-events/DrawEvents.stories.tsx)

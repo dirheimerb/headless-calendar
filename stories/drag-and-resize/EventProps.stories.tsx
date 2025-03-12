@@ -38,7 +38,7 @@ const Event = ({
 			id={id}
 			key={id}
 			tabIndex={-1}
-			className={`absolute w-full select-none rounded-lg p-4 ${className} ${startsBeforeToday ? 'rounded-t-none' : ''} ${endsAfterToday ? 'rounded-b-none' : ''} `}
+			className={`absolute w-full rounded-lg p-4 select-none ${className} ${startsBeforeToday ? 'rounded-t-none' : ''} ${endsAfterToday ? 'rounded-b-none' : ''} `}
 			style={{ top, bottom }}>
 			{title}
 			<br />
@@ -90,7 +90,7 @@ export const EventProps: Story = {
 				{() => (
 					<>
 						<div
-							className="grid h-[700px] select-none gap-4"
+							className="grid h-[700px] gap-4 select-none"
 							style={{
 								gridTemplateColumns: '60px repeat(5, 1fr)',
 								gridTemplateRows: 'min-content 1fr',
@@ -161,7 +161,7 @@ export const EventProps: Story = {
 										{time.map(({ hour, top }) => (
 											<div
 												key={hour}
-												className="absolute -left-4 right-0 h-0.5 bg-slate-300 opacity-30"
+												className="absolute right-0 -left-4 h-0.5 bg-slate-300 opacity-30"
 												style={{ top }}
 											/>
 										))}

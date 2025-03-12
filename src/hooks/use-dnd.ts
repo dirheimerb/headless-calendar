@@ -1,8 +1,12 @@
 'use client';
-import { useCallback, useState } from "react";
-import { DragDropContext } from "../types";
-import { addMinutes, differenceInMinutes, roundToNearestMinutes } from "../date-utils";
-import { pixelsToDate } from "../utils";
+import {
+	addMinutes,
+	differenceInMinutes,
+	roundToNearestMinutes,
+} from '../date-utils';
+import { useCallback, useState } from 'react';
+import { DragDropContext } from '../types';
+import { pixelsToDate } from '../utils';
 
 export const useDragAndDrop = ({
 	allEvents,
@@ -12,10 +16,10 @@ export const useDragAndDrop = ({
 	topRef,
 	onEventChange,
 	onDrop,
-	setDraggingId
+	setDraggingId,
 }: DragDropContext) => {
 	const [isDragging, setIsDragging] = useState(false);
-	
+
 	const onDragStart = useCallback(
 		(e: DragEvent) => {
 			console.log('drag start');
@@ -23,10 +27,10 @@ export const useDragAndDrop = ({
 			if (!e.dataTransfer?.types[0]) return;
 			const data = e.dataTransfer?.types[0];
 			const [draggingId, offsetMinutesStr, roundMinutesStr] = data?.split(';');
-			console.log(draggingId,offsetMinutesStr);
+			console.log(draggingId, offsetMinutesStr);
 			setDraggingId(draggingId);
 		},
-		[setDraggingId]
+		[setDraggingId],
 	);
 
 	const onDragEnd = useCallback(() => {
@@ -42,7 +46,8 @@ export const useDragAndDrop = ({
 			if (!e.dataTransfer?.types[0]) return;
 
 			const dragData = e.dataTransfer.types[0];
-			const [draggingId, offsetMinutesStr, roundMinutesStr] = dragData.split(';');
+			const [draggingId, offsetMinutesStr, roundMinutesStr] =
+				dragData.split(';');
 			const offsetMinutes = Number(offsetMinutesStr);
 			const roundMinutes = Number(roundMinutesStr);
 
@@ -52,14 +57,14 @@ export const useDragAndDrop = ({
 			const newTop = e.clientY - topRef.current;
 			const newStart = roundToNearestMinutes(
 				addMinutes(pixelsToDate(newTop, columnHeight, date), -offsetMinutes),
-				{ nearestTo: roundMinutes }
+				{ nearestTo: roundMinutes },
 			);
 			const duration = differenceInMinutes(event.end, event.start);
 			const newEnd = addMinutes(newStart, duration);
 
 			onEventChange({ ...event, start: newStart, end: newEnd });
 		},
-		[columnHeight, date, allEvents, onEventChange]
+		[columnHeight, date, allEvents, onEventChange],
 	);
 
 	const handleDrop = useCallback(
@@ -68,16 +73,14 @@ export const useDragAndDrop = ({
 			onDrop();
 			setDraggingId('');
 		},
-		[onDrop, setDraggingId]
+		[onDrop, setDraggingId],
 	);
 
-	
-
-	return { 
-		handleDragOver, 
-		handleDrop, 
-		onDragStart, 
-		onDragEnd, 
-		isDragging 
+	return {
+		handleDragOver,
+		handleDrop,
+		onDragStart,
+		onDragEnd,
+		isDragging,
 	};
 };

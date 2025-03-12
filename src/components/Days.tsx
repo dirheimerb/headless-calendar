@@ -1,7 +1,7 @@
 'use client';
 import { addDays, useAgenda } from '..';
+import React, { memo, useMemo } from 'react';
 import type { WeekProps } from '..';
-import { memo, useMemo } from 'react';
 import Day from './Day';
 /**
  * Days
@@ -23,7 +23,7 @@ import Day from './Day';
  * </Days>
  * ```
  */
-function Days({ children }: WeekProps): JSX.Element {
+function Days({ children }: WeekProps): React.ReactElement {
 	const { startDate, days } = useAgenda();
 
 	const daysOfWeek = useMemo(() => [...Array(days).keys()], [days]);

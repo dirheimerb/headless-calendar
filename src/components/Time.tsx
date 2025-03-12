@@ -1,7 +1,7 @@
 'use client';
 import { memo, ReactNode, useCallback, useState } from 'react';
-import { dateToPixels } from '..';
 import type { TimeProps } from '..';
+import { dateToPixels } from '..';
 
 /**
  * Formats an hour value into a human-readable time string.

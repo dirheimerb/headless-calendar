@@ -1,8 +1,9 @@
 'use client';
-import { useMemo, useState } from 'react';
-import AgendaContext from '../context/agenda-context';
-import { addDays, startOfWeek } from '..';
 import type { AgendaContextType, AgendaProps, BaseAgendaEvent } from '..';
+import AgendaContext from '../context/agenda-context';
+import React, { useMemo, useState } from 'react';
+import { addDays, startOfWeek } from '..';
+import { ThemeProvider } from '../theme';
 /**
  *
  * @param {AgendaProps<TEvent>} {
@@ -45,7 +46,7 @@ export default function Agenda<TEvent extends BaseAgendaEvent>({
 	children,
 	onDragStart = () => {},
 	onDrop = () => {},
-}: AgendaProps<TEvent>): JSX.Element {
+}: AgendaProps<TEvent>): React.ReactElement {
 	const endDate = addDays(new Date(startDate), days - 1);
 	const [draggingId, setDraggingId] = useState<string>('');
 	/**
@@ -62,37 +63,39 @@ export default function Agenda<TEvent extends BaseAgendaEvent>({
 	 * @type {Date} startDate - contextValue.startDate
 	 */
 	const contextValue: AgendaContextType<TEvent> = useMemo(() => {
-    return {
-      startDate,
-      endDate,
-      onStartDateChange,
-      events,
-      onEventChange,
-      days,
-      onDragStart,
-      onDrop,
-      draggingId,
-      setDraggingId,
-    };
-  }, [
-    startDate,
-    endDate,
-    onStartDateChange,
-    events,
-    onEventChange,
-    days,
-    onDragStart,
-    onDrop,
-    draggingId,
-    setDraggingId,
-  ]);
+		return {
+			startDate,
+			endDate,
+			onStartDateChange,
+			events,
+			onEventChange,
+			days,
+			onDragStart,
+			onDrop,
+			draggingId,
+			setDraggingId,
+		};
+	}, [
+		startDate,
+		endDate,
+		onStartDateChange,
+		events,
+		onEventChange,
+		days,
+		onDragStart,
+		onDrop,
+		draggingId,
+		setDraggingId,
+	]);
 	return (
-		<AgendaContext.Provider value={contextValue}>
-			{children({
-				prev: () => onStartDateChange(addDays(new Date(startDate), -days)),
-				next: () => onStartDateChange(addDays(new Date(startDate), days)),
-				endDate,
-			})}
-		</AgendaContext.Provider>
+		<ThemeProvider>
+			<AgendaContext.Provider value={contextValue}>
+				{children({
+					prev: () => onStartDateChange(addDays(new Date(startDate), -days)),
+					next: () => onStartDateChange(addDays(new Date(startDate), days)),
+					endDate,
+				})}
+			</AgendaContext.Provider>
+		</ThemeProvider>
 	);
 }

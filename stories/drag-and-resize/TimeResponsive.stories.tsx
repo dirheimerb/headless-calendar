@@ -38,7 +38,7 @@ const Event = ({
 			id={id}
 			key={id}
 			tabIndex={-1}
-			className={`absolute w-full select-none rounded-lg ${className} ${isShort ? 'bg-red-500 p-3' : 'bg-lime-500 p-4'} `}
+			className={`absolute w-full rounded-lg select-none ${className} ${isShort ? 'bg-red-500 p-3' : 'bg-lime-500 p-4'} `}
 			style={{ top, bottom }}>
 			<div className={isShort ? 'flex items-center justify-between' : ''}>
 				{title}
@@ -90,7 +90,7 @@ export const TimeResponsive: Story = {
 				{() => (
 					<>
 						<div
-							className="grid h-screen select-none gap-4"
+							className="grid h-screen gap-4 select-none"
 							style={{
 								gridTemplateColumns: '60px repeat(7, 1fr)',
 								gridTemplateRows: 'min-content 1fr',
@@ -149,7 +149,7 @@ export const TimeResponsive: Story = {
 										{time.map(({ hour, top }) => (
 											<div
 												key={hour}
-												className="absolute -left-4 right-0 h-0.5 bg-slate-300 opacity-30"
+												className="absolute right-0 -left-4 h-0.5 bg-slate-300 opacity-30"
 												style={{ top }}
 											/>
 										))}

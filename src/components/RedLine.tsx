@@ -1,9 +1,9 @@
 'use client';
+import { useDay, dateToPixels, isToday } from '..';
 import { memo, useEffect, useState } from 'react';
 import type { RedLineProps } from '..';
-import { useDay, dateToPixels, isToday } from '..';
-import { format } from 'date-fns';
 import { m } from 'framer-motion';
+import { format } from 'date-fns';
 /**
  * RedLine component
  * @param {RedLineProps} children
@@ -18,9 +18,7 @@ import { m } from 'framer-motion';
  * </RedLine>
  * ```
  */
-function RedLine({
-	children,
-}: RedLineProps): JSX.Element | null {
+function RedLine({ children }: RedLineProps) {
 	const { columnHeight, date } = useDay();
 	const [top, setTop] = useState(dateToPixels(new Date(), columnHeight));
 
@@ -45,9 +43,9 @@ function RedLine({
 			initial={{ top }}
 			animate={{ top }}
 			transition={{ duration: 60 }}
-			className='cursor-pointer'
+			className="cursor-pointer"
 			key={format(date, 'yyyy-MM-dd')}>
-				{children({ top })}
+			{children({ top })}
 		</m.div>
 	);
 }

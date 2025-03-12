@@ -36,7 +36,7 @@ const Event = ({
 		<div
 			key={id}
 			tabIndex={-1}
-			className={`absolute w-full select-none rounded-lg p-4 ${className} `}
+			className={`absolute w-full rounded-lg p-4 select-none ${className} `}
 			style={{ top, bottom }}
 			draggable
 			onDragStart={handle2}>
@@ -87,7 +87,7 @@ export const DragAndResize: Story = {
 				{() => (
 					<>
 						<div
-							className="grid h-screen select-none gap-4"
+							className="grid h-screen gap-4 select-none"
 							style={{
 								gridTemplateColumns: '60px repeat(7, 1fr)',
 								gridTemplateRows: 'min-content 1fr',
@@ -146,7 +146,7 @@ export const DragAndResize: Story = {
 										{time.map(({ hour, top }) => (
 											<div
 												key={hour}
-												className="absolute -left-4 right-0 h-0.5 bg-slate-300 opacity-30"
+												className="absolute right-0 -left-4 h-0.5 bg-slate-300 opacity-30"
 												style={{ top }}
 											/>
 										))}

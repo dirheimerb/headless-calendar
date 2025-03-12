@@ -1,4 +1,5 @@
 import Agenda, { Days, Time, mouseEventToDate } from '../../src';
+import { userEvent, within, expect } from '@storybook/test';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MouseEvent } from 'react';
 
@@ -11,6 +12,15 @@ export default meta;
 type Story = StoryObj<typeof Agenda>;
 
 export const PixelsToDateUsage: Story = {
+	play: async ({ canvasElement }) => {
+		const canvas = within(canvasElement);
+		const day = await canvas.findByText('10:00');
+		const time = await canvas.findByText('1:00');
+
+		await userEvent.click(day);
+		await userEvent.click(time);
+		await expect(canvas.getByText('8:00')).toBeInTheDocument();
+	},
 	render: () => {
 		const handleClick = (e: MouseEvent<HTMLElement>, date: Date) => {
 			alert(`Clicked at: ${mouseEventToDate(e, date).toLocaleTimeString()}`);
@@ -38,7 +48,7 @@ export const PixelsToDateUsage: Story = {
 									{time.map(({ hour, top }) => (
 										<div
 											key={hour}
-											className="absolute left-0 right-0 h-0.5 bg-slate-300 opacity-30"
+											className="absolute right-0 left-0 h-0.5 bg-slate-300 opacity-30"
 											style={{ top }}>
 											{hour}:00
 										</div>

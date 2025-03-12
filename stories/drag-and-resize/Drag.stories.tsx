@@ -1,7 +1,7 @@
+import Agenda, { Days, Time, useDragEvent } from '../../src';
 import { addDays, format, startOfWeek } from 'date-fns';
 import type { Meta, StoryObj } from '@storybook/react';
 import { BaseAgendaEvent } from '../../src/types';
-import Agenda, { Days, Time, useDragEvent } from '../../src';
 import { useCallback, useState } from 'react';
 import { RedLine } from '../../src';
 
@@ -37,7 +37,7 @@ const Event = ({
 			id={id}
 			key={id}
 			tabIndex={-1}
-			className={`absolute w-full cursor-move select-none rounded-lg p-4 ${className} `}
+			className={`absolute w-full cursor-move rounded-lg p-4 select-none ${className} `}
 			style={{ top, bottom }}
 			draggable
 			onDragStart={handleDragStart}>
@@ -89,7 +89,7 @@ export const DragOnly: Story = {
 				{() => (
 					<>
 						<div
-							className="grid h-[600px] select-none gap-4"
+							className="grid h-[600px] gap-4 select-none"
 							style={{
 								gridTemplateColumns: '60px repeat(7, 1fr)',
 								gridTemplateRows: 'min-content 1fr',
@@ -151,7 +151,7 @@ export const DragOnly: Story = {
 										{time.map(({ hour, top }) => (
 											<div
 												key={hour}
-												className="absolute -left-4 right-0 h-0.5 bg-slate-300 opacity-30"
+												className="absolute right-0 -left-4 h-0.5 bg-slate-300 opacity-30"
 												style={{ top }}
 											/>
 										))}
